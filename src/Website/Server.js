@@ -10,10 +10,12 @@ const monitor = new Monitor({
         interval: 3,
 });
 const fetch = require('node-fetch');
+const path = require('path');
 const app = express();
 
 module.exports = (port, client) => {
-	app.set('view engine', 'ejs')
+        app.set('views', path.join(__dirname, 'views'));
+        app.set('view engine', 'ejs');
         app.use(helmet());
         app.use(bodyParser.json());
         morganBody(app);
@@ -23,7 +25,15 @@ module.exports = (port, client) => {
         });
 
         app.get('/', (req, res) => {
-                res.status(200).send('hii');
+                res.status(200).render('pages/index', {
+                        users: client.guilds.cache.reduce(
+                                (a, b) => a + b.memberCount,
+                                0
+                        ),
+                        channels: client.channels.cache.size,
+                        commands: client.registry.commands.size,
+                        servers: client.guilds.cache.size,
+                });
         });
         app.listen(port);
 
