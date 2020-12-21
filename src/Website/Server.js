@@ -13,6 +13,7 @@ const fetch = require('node-fetch');
 const app = express();
 
 module.exports = (port, client) => {
+	app.set('view engine', 'ejs')
         app.use(helmet());
         app.use(bodyParser.json());
         morganBody(app);
