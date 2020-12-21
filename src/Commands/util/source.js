@@ -22,8 +22,11 @@ module.exports = class extends Command {
         }
 
         run(msg, { command }) {
+                let src = command.source;
+                if (src === undefined)
+                        src = 'https://github.com/discordjs/Commando';
                 return msg.embed({
-                        description: `**${command.source}**`,
+                        description: `**${src}**`,
                         color: 'BLUE',
                 });
         }
