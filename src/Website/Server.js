@@ -6,6 +6,7 @@ const monitor = new Monitor({
         title: 'Website',
         interval: 3,
 });
+const fetch = require('node-fetch');
 const app = express();
 
 module.exports = (port, client) => {
@@ -17,4 +18,6 @@ module.exports = (port, client) => {
                 res.status(200).send('hii');
         });
         app.listen(port);
+
+        setInterval(() => fetch(config.web.address), 180000);
 };

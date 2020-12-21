@@ -20,7 +20,10 @@ client.registry
                 ping: false,
                 help: false,
         })
-        .registerGroups([['util', 'Utility']])
+        .registerGroups([
+                ['util', 'Utility'],
+                ['game', 'Games'],
+        ])
         .registerCommandsIn(path.join(__dirname, 'Commands'));
 
 client.once('ready', async () => {
