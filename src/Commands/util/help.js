@@ -12,7 +12,7 @@ module.exports = class extends Command {
                         group: 'util',
                         memberName: 'help',
                         source:
-                                'https://github.com/1chiSensei/blob/main/src/Commands/util/help.js',
+                                'https://github.com/1chiSensei/Riri/blob/main/src/Commands/util/help.js',
                         description:
                                 'Displays a list of available commands, or detailed information for a specific command.',
                         guarded: true,
