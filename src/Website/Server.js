@@ -1,4 +1,7 @@
 const config = require('../../config');
+const bodyParser = require('body-parser');
+const morganBody = require('morgan-body');
+const helmet = require('helmet');
 const Monitor = require('ping-monitor');
 const express = require('express');
 const monitor = new Monitor({
@@ -10,6 +13,10 @@ const fetch = require('node-fetch');
 const app = express();
 
 module.exports = (port, client) => {
+        app.use(helmet());
+        app.use(bodyParser.json());
+        morganBody(app);
+
         monitor.on('up', (res) => {
                 client.logger.info(`${res.website} is active.`);
         });
